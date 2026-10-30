@@ -15,5 +15,8 @@
       "destination": "/api/index"
     }
   ],
-  "framework": null
+  "framework": null,
+  "regions": [
+    "sin1"
+  ]
 }
