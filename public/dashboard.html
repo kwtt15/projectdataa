@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>WASHY | Dashboard</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="images/washy-logo.jpg" rel="icon" type="image/jpeg" />
+  </head>
+  <body data-page="dashboard">
+    <div class="shell">
+      <aside id="sidebar">
+        <div class="brand">
+          <img
+            alt="WASHY Logo"
+            class="brand-logo"
+            src="images/washy-logo.jpg"
+          />
+          <div class="brand-text">
+            <div class="brand-name">WASHY</div>
+            <small>Car Wash &amp; Auto Detailing Booking</small>
+          </div>
+        </div>
+        <div class="nav-frame">
+          <nav id="nav"></nav>
+          <div class="mascot">
+            <img
+              alt="WASHY mascot holding sponge and wrench"
+              class="mascot-image"
+              src="images/washy-mascot.png"
+            />
+          </div>
+        </div>
+      </aside>
+      <main>
+        <header>
+          <button aria-label="เปิดปิดเมนู" class="icon-btn" id="toggle">
+            <i data-lucide="menu"> </i>
+          </button>
+          <div class="top-title">Car Wash Management System</div>
+          <div class="top-right">
+            <span id="today"> </span>
+            <div class="avatar">A</div>
+            <span> Admin </span>
+          </div>
+        </header>
+        <section id="content"></section>
+      </main>
+    </div>
+    <div class="modal hidden" id="modal">
+      <div class="dialog">
+        <div class="dialog-head">
+          <h2 id="modalTitle"></h2>
+          <button class="icon-btn" id="closeModal">
+            <i data-lucide="x"> </i>
+          </button>
+        </div>
+        <form id="editorForm">
+          <div class="form-grid" id="formFields"></div>
+          <div class="form-actions">
+            <button class="btn ghost" id="cancelModal" type="button">
+              ยกเลิก
+            </button>
+            <button class="btn primary" type="submit">บันทึกข้อมูล</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="toast" role="status"></div>
+    <script src="js/app.js"></script>
+  </body>
+</html>

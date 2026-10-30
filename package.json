@@ -1,0 +1,25 @@
+{
+  "name": "washy-er",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "db:migrate": "node scripts/database.js migrate",
+    "db:seed": "node scripts/database.js seed",
+    "test": "node --test test/*.test.js",
+    "build": "node scripts/build.js",
+    "db:bundle": "node scripts/bundle-neon.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "dotenv": "^16.4.7",
+    "pg": "^8.16.3"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.14"
+  }
+}

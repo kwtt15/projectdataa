@@ -1,0 +1,907 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Press+Start+2P&display=swap');
+
+:root {
+    font-family: Kanit, system-ui, sans-serif;
+    color: #173252;
+    background: #f6f9fd
+}
+html {
+  scroll-behavior: smooth;
+}
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0
+}
+
+.shell {
+    display: flex;
+    min-height: 100vh
+}
+
+aside {
+    width: 310px;
+    background: #003E7D;
+    color: #fff;
+    flex-shrink: 0;
+    padding: 28px 18px 22px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 30px 30px 0;
+    box-shadow: 7px 0 22px #092f5024;
+    transition: .25s
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 12px 26px
+}
+
+.brand-icon {
+    font-size: 33px;
+    border-radius: 12px;
+    background: #1973d5;
+    padding: 8px
+}
+
+.brand-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 23px;
+    color: white;
+    /* text-shadow: 3px 3px #5ba6ff; */
+    letter-spacing: 1px
+}
+
+.brand small {
+    font-size: 10px;
+    color: #ffffff
+}
+
+.nav-frame {
+    border: 2px solid #d5e9ff;
+    border-radius: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 20px 10px 10px
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 3px
+}
+
+nav button {
+    background: transparent;
+    color: #e8f3ff;
+    border: 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 15px;
+    border-radius: 10px;
+    font: 400 15px Kanit;
+    cursor: pointer
+}
+
+nav button:hover,
+nav button.active {
+    background: #165b9d
+}
+
+nav svg {
+    width: 19px;
+    height: 19px
+}
+
+.mascot {
+    margin-top: auto;
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+    background: radial-gradient(circle at 50% 85%, #2875ca77, transparent 70%);
+    text-align: center
+}
+
+.bubbles {
+    font-size: 32px
+}
+
+.mascot-face {
+    width: 200px;
+    height: 140px;
+    border-radius: 50% 50% 35% 35%;
+    background: linear-gradient(#fff, #cce7ff);
+    border: 8px solid #1879d0;
+    color: #075aa4;
+    box-shadow: 0 10px 0 #0b488c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    transform: rotate(-5deg)
+}
+
+.mascot-face span {
+    font-size: 34px;
+    font-weight: 700
+}
+
+.mascot-caption {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #bbd9ff
+}
+
+main {
+    flex: 1;
+    min-width: 0
+}
+
+header {
+    height: 78px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 36px;
+    gap: 18px;
+    border-bottom: 1px solid #e9eff5
+}
+
+.top-title {
+    font-size: 15px;
+    color: #71849b
+}
+
+.top-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #6c7e94;
+    font-size: 13px
+}
+
+.avatar {
+    background: #0071FB;
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center
+}
+
+.icon-btn {
+    border: 1.5px solid rgb(61, 99, 161);
+    background: transparent;
+    color: #244a73;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 8px;
+    border-radius: 8px
+
+
+}
+
+.icon-btn:hover {
+    background: #eaf3ff
+}
+
+#content {
+    padding: 32px 38px;
+    max-width: 1700px;
+    margin: auto
+}
+
+.page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 26px;
+    flex-wrap: wrap
+}
+
+h1 {
+    font-size: 35px;
+    color: #13569e;
+    letter-spacing: .3px;
+    margin: 0;
+    font-weight: 600
+}
+
+h2 {
+    margin: 0;
+    font-size: 21px;
+    color: #174777
+}
+
+p {
+    margin: 4px 0;
+    color: #7d8fa2
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px
+}
+
+.card,
+.panel {
+    background: #fff;
+    border: 1px solid #e0e8f1;
+    border-radius: 21px;
+    box-shadow: 0 3px 12px #164d8110
+}
+
+.card {
+    padding: 23px;
+    min-height: 170px
+}
+
+.card-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: #e9f3ff;
+    color: #1b69bb;
+    display: grid;
+    place-items: center
+}
+
+.card-icon svg {
+    width: 23px
+}
+
+.card-label {
+    font-size: 14px;
+    color: #70859b;
+    margin: 12px 0 3px
+}
+
+.card-value {
+    font-size: 30px;
+    font-weight: 600;
+    color: #0e4074
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 20px;
+    margin-top: 24px
+}
+
+.panel {
+    padding: 24px;
+    margin-bottom: 20px
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px
+}
+
+.chart {
+    height: 260px;
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    gap: 14px;
+    border-bottom: 1px solid #d8e5f2;
+    padding: 20px 12px 0;
+    background: repeating-linear-gradient(to top, #e9eff6 0 1px, transparent 1px 52px)
+}
+
+.bar-col {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+    gap: 7px;
+    height: 100%
+}
+
+.bar {
+    background: linear-gradient(180deg, #46a3ff, #1764bd);
+    border-radius: 8px 8px 0 0;
+    width: min(45px, 100%);
+    min-height: 5px
+}
+
+.bar-col small {
+    font-size: 11px;
+    color: #73869a;
+    white-space: nowrap
+}
+
+.activity {
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.activity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: #f6f9fd;
+    border-radius: 12px
+}
+
+.btn {
+    border: 1px solid #dbe5ef;
+    background: white;
+    color: #23527d;
+    padding: 10px 17px;
+    border-radius: 10px;
+    font: 500 14px Kanit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px
+}
+
+.btn svg {
+    width: 17px
+}
+
+.btn.primary {
+    background: #0071FB;
+    border-color: #176cc5;
+    color: white
+}
+
+.btn.danger {
+    color: #dc4051;
+    border-color: #ffd9df
+}
+
+.btn.ghost {
+    background: #f5f8fb
+}
+
+.btn:hover {
+    filter: brightness(.95)
+}
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    flex-wrap: wrap
+}
+
+.toolbar input,
+.toolbar select,
+input,
+select,
+textarea {
+    border: 1px solid #dce5f0;
+    border-radius: 9px;
+    padding: 10px 12px;
+    background: #fff;
+    font: 400 14px Kanit;
+    color: #244361;
+    min-width: 0
+}
+
+.toolbar input {
+    min-width: 240px;
+    flex: 1
+}
+
+.table-wrap {
+    overflow-x: auto
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+    font-size: 14px
+
+}
+
+th {
+    text-align: left;
+    color: black;
+    background: #6ABEFF;
+    font-weight: 400
+
+}
+
+td,
+th {
+    padding: 13px 15px;
+    border-bottom: 1px solid #edf1f6
+}
+
+td {
+    color: #294866
+}
+
+.badge {
+    border-radius: 50px;
+    padding: 4px 10px;
+    background: #e8f0fb;
+    color: #356caa;
+    font-size: 12px
+}
+
+.badge.success {
+    background: #def8ec;
+    color: #18845c
+}
+
+.badge.warning {
+    background: #fff0d5;
+    color: #b77b13
+}
+
+.badge.danger {
+    background: #ffe3e8;
+    color: #be3d53
+}
+
+.badge.info {
+    background: #e2efff;
+    color: #1767b7
+}
+
+.actions {
+    display: flex;
+    gap: 5px
+}
+
+.actions button {
+    padding: 6px 9px;
+    font-size: 12px
+}
+
+.empty {
+    text-align: center;
+    padding: 40px;
+    color: #8496a8
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: #0926418c;
+    display: grid;
+    place-items: center;
+    z-index: 10;
+    padding: 20px
+}
+
+.hidden {
+    display: none !important
+}
+
+.dialog {
+    width: min(740px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 26px;
+    box-shadow: 0 25px 90px #0004
+}
+
+.dialog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: #496784
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%
+}
+
+.field.wide {
+    grid-column: 1/-1
+}
+
+.form-actions {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 25px
+}
+
+.tabs {
+    display: flex;
+    gap: 9px;
+    margin-bottom: 17px;
+    flex-wrap: wrap
+}
+
+.tab {
+    background: #f1f6fc;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font: 500 14px Kanit;
+    color: #54718d;
+    cursor: pointer
+}
+
+.tab.active {
+    background: #dceeff;
+    color: #1265b3
+}
+
+.bay-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px
+}
+
+.bay {
+    border: 1px solid #dce7f2;
+    border-radius: 16px;
+    padding: 20px;
+    background: #fff
+}
+
+.bay h2 {
+    margin-bottom: 15px
+}
+
+.subtle {
+    color: #7c91a5;
+    font-size: 12px
+}
+
+.hint {
+    background: #eaf4ff;
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #315f8c;
+    margin-bottom: 18px;
+    font-size: 13px
+}
+
+#toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #153f69;
+    color: #fff;
+    border-radius: 12px;
+    padding: 12px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s;
+    z-index: 20
+}
+
+#toast.show {
+    opacity: 1
+}
+
+body.collapsed aside {
+    width: 0;
+    padding: 0;
+    overflow: hidden
+}
+
+body.collapsed .brand,
+body.collapsed .nav-frame {
+    display: none
+}
+
+@media(max-width:1100px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr
+    }
+
+    .bay-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    aside {
+        width: 255px
+    }
+
+    .brand-name {
+        font-size: 18px
+    }
+}
+
+@media(max-width:720px) {
+    aside {
+        position: fixed;
+        z-index: 8;
+        height: 100vh;
+        overflow: auto;
+        width: 280px;
+        border-radius: 0 25px 25px 0
+    }
+
+    body:not(.mobile-open) aside {
+        transform: translateX(-105%)
+    }
+
+    body.collapsed aside {
+        width: 280px;
+        padding: 28px 18px 22px
+    }
+
+    body.collapsed .brand,
+    body.collapsed .nav-frame {
+        display: flex
+    }
+
+    header {
+        padding: 0 15px
+    }
+
+    .top-title {
+        display: none
+    }
+
+    #content {
+        padding: 22px 15px
+    }
+
+    .cards {
+        gap: 10px
+    }
+
+    .card {
+        min-height: 140px;
+        padding: 15px
+    }
+
+    .card-value {
+        font-size: 24px
+    }
+
+    h1 {
+        font-size: 27px
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr
+    }
+
+    .bay-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .top-right #today {
+        display: none
+    }
+}
+
+/* Links in sidebar act as independent page navigation */
+#nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font: inherit;
+    transition: background .15s
+}
+
+#nav a:hover {
+    background: rgba(255, 255, 255, .12)
+}
+
+#nav a.active {
+    background: #fff;
+    color: #08396e;
+    font-weight: 500
+}
+
+#nav a svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0
+}
+
+/* ผลการค้นหาลูกค้าในฟอร์ม */
+.customer-results {
+    max-height: 170px;
+    overflow: auto;
+    border: 1px solid #dce1e8;
+    border-radius: 9px;
+    margin-top: 5px;
+    background: white
+}
+
+.customer-results[hidden] {
+    display: none
+}
+
+.customer-choice {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+    color: #253047
+}
+
+.customer-choice:hover {
+    background: #f1f5f9
+}
+
+/* WASHY sidebar branding — reference-inspired, all pages */
+aside {
+    background: #003E7D;
+    width: 310px;
+    padding: 28px 17px 22px
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 6px 8px 28px;
+    min-height: 104px
+}
+
+.brand-logo {
+    display: block;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 15px;
+    flex-shrink: 0
+}
+
+.brand-text {
+    min-width: 0
+}
+
+.brand-name {
+    font-size: 24px;
+    line-height: 1.5;
+    white-space: nowrap
+}
+
+.brand small {
+    display: block;
+    font-size: 9px;
+    line-height: 1.5;
+    white-space: nowrap
+}
+
+.nav-frame {
+    border: 2px solid #e6f2ff;
+    border-radius: 24px;
+    padding: 18px 10px 0;
+    min-height: 0
+}
+
+nav {
+    gap: 1px
+}
+
+nav a {
+    background: transparent;
+    color: #f2f8ff;
+    text-decoration: none;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 9px 13px;
+    border-radius: 11px;
+    font: 400 16px Kanit, system-ui, sans-serif;
+    transition: background .15s
+}
+
+nav a:hover,
+nav a.active {
+    background: #155b9c;
+    color: #fff
+}
+
+nav a svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0
+}
+
+.mascot {
+    margin-top: auto;
+    min-height: 0;
+    width: 100%;
+    background: none;
+    display: block;
+    overflow: hidden;
+    line-height: 0
+}
+
+.mascot-image {
+    display: block;
+    width: 120%;
+    max-width: none;
+    height: auto;
+    margin-left: -10%;
+    margin-bottom: -5%;
+    object-fit: contain
+}
+
+@media(max-width:1100px) {
+    aside {
+        width: 275px
+    }
+
+    .brand-logo {
+
+        height: 60px
+    }
+
+    .brand-name {
+        font-size: 19px
+    }
+
+    .brand small {
+        font-size: 8px
+    }
+
+    nav a {
+        font-size: 15px;
+        padding: 8px 10px
+    }
+}
+
+@media(max-width:720px) {
+    aside {
+        width: 280px
+    }
+
+    body.collapsed aside {
+        width: 280px;
+        padding: 28px 17px 22px
+    }
+}
