@@ -4,6 +4,7 @@ node_modules
 .env.*
 !.env.example
 database
-scripts
+scripts/database.js
+scripts/bundle-neon.js
 test
 WASHY_README.md
