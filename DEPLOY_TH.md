@@ -56,21 +56,19 @@ connection string มีรหัสผ่าน ห้ามใส่ใน Git
 4. ใช้ **Framework Preset: Other** และ **Node.js: 24.x**
 5. ตั้ง **Install Command** เป็น `npm ci` และ **Build Command** เป็น `npm run build`
 6. ใช้ **Output Directory** `vercel-static` ตาม `vercel.json` ไม่ใช่ `public`
-   อย่าตั้ง `public` เป็น output เพราะหน้าเว็บต้องผ่านรหัสเข้าใช้งานใน Express
+   ใช้ Express entry point เดียวกันสำหรับหน้าเว็บและ API
 7. เพิ่ม **Environment Variables** ก่อนกด Deploy:
 
 | ชื่อตัวแปร | ค่า |
 | --- | --- |
 | `DATABASE_URL` | connection string แบบ pooled จาก Neon พร้อม TLS |
-| `APP_USERNAME` | ชื่อเข้าเว็บ เช่น `admin` (ไม่ใช้เครื่องหมาย `:`) |
-| `APP_PASSWORD` | รหัสผ่านใหม่ที่ยาวและเดายาก ไม่ใช้รหัสผ่านตัวอย่าง |
 
 เลือก scope **Production** และ **Preview** หากต้องการทดสอบ preview ด้วย
 ใส่ค่าตามจริง ไม่ใส่เครื่องหมาย quote ครอบ ใช้ตัวแปรฝั่ง server ปกติ ไม่เติม `NEXT_PUBLIC_` หรือ `VITE_`
 `PORT` และ `DB_SERVER`/`DB_USER`/`DB_PASSWORD` ของ SQL Server เดิมไม่ต้องตั้ง
 
 8. กด **Deploy** เมื่อเสร็จจะได้ URL ลักษณะ `https://ชื่อโปรเจกต์.vercel.app`
-9. เปิด URL เบราว์เซอร์จะถามชื่อ/รหัสผ่าน ใช้ `APP_USERNAME` และ `APP_PASSWORD` ที่ตั้งไว้
+9. เปิด URL ได้ทันที ไม่ต้อง login ผู้ที่มีลิงก์สามารถดูและแก้ไขข้อมูลได้
 
 หากแก้ Environment Variables ภายหลัง ให้ **Redeploy** deployment ที่ต้องการให้ใช้ค่าใหม่
 ไม่ต้องรัน `npm start` บนคอมค้างไว้ และไม่ต้องเปิดพอร์ต router
@@ -78,7 +76,7 @@ connection string มีรหัสผ่าน ห้ามใส่ใน Git
 ## 5. ตรวจหลัง Deploy
 
 - เปิด `/dashboard.html` และตรวจว่าข้อมูลแสดง ไม่ขึ้นข้อความเชื่อมต่อฐานข้อมูลไม่สำเร็จ
-- เปิด `/api/health` ในเบราว์เซอร์ที่เข้าสู่ระบบแล้ว ควรได้ `{"ok":true,"engine":"PostgreSQL"}`
+- เปิด `/api/health` ในเบราว์เซอร์ ควรได้ `{"ok":true,"engine":"PostgreSQL"}`
 - เปิดหน้าลูกค้า รถ บริการ จองคิว และรายงาน
 - บนข้อมูลทดสอบ ลองเพิ่มลูกค้า/รถ แล้วจองเวลาว่าง 08:00–18:00 เริ่มล้าง ปิดงาน และรับชำระ
 - ถ้าใช้เครดิตสมาชิก ตรวจว่าเครดิตลดครั้งเดียวและไม่เกิดรายรับเงินสดจากการแลกเครดิต
@@ -88,8 +86,6 @@ connection string มีรหัสผ่าน ห้ามใส่ใน Git
 
 | อาการ | สิ่งที่ตรวจ |
 | --- | --- |
-| 503 ขอให้ตั้งชื่อ/รหัสผ่าน | เพิ่ม `APP_USERNAME` และ `APP_PASSWORD` ให้ครบ แล้ว Redeploy |
-| ถามรหัสผ่านซ้ำ | ชื่อ/รหัสผ่านต้องตรงกับค่า Vercel; ลองเปิดหน้าต่างไม่ระบุตัวตนหลังเปลี่ยนรหัส |
 | เชื่อมต่อฐานข้อมูลไม่ได้ | ตรวจ `DATABASE_URL`, TLS, database/role, pooled host และดู Vercel Function Logs โดยไม่แชร์ค่าลับ |
 | ขึ้นว่าตารางหรือ function ไม่มี | รัน `setup-neon.sql` ใน database เดียวกับ connection string |
 | 404 ทุกหน้า | ตรวจ Root Directory และมี `vercel.json`, `api/index.js` บน branch ที่ Deploy |
@@ -102,4 +98,4 @@ connection string มีรหัสผ่าน ห้ามใส่ใน Git
 Push โค้ดขึ้น branch production จะให้ Vercel deploy รุ่นใหม่ตามการตั้งค่า Git integration
 ข้อมูลฐานข้อมูลแยกจาก deployment จึงไม่หายเมื่อ deploy ใหม่
 อย่ารัน seed ซ้ำบนข้อมูลใช้งานจริง และสำรองข้อมูลก่อนเปลี่ยน schema
-ระบบนี้ใช้บัญชีพนักงานร่วมหนึ่งบัญชี หากต้องการแยกสิทธิ์เจ้าของร้าน/พนักงานต้องพัฒนาระบบผู้ใช้เพิ่ม
+ระบบนี้ไม่มีการ login หากต้องการจำกัดสิทธิ์เจ้าของร้าน/พนักงานต้องเพิ่มระบบผู้ใช้ในภายหลัง

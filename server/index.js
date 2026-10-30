@@ -4,7 +4,7 @@ const express = require("express"),
   path = require("path");
 const app = express();
 app.disable("x-powered-by");
-app.use(require("./auth"));
+app.use(require("./security"));
 app.use(express.json({ limit: "200kb" }));
 app.use("/api", (_, res, next) => {
   res.set("Cache-Control", "no-store");

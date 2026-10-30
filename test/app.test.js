@@ -33,10 +33,9 @@ process.env.DATABASE_URL = 'postgresql://test/test';
 const app = require('../server/index');
 const { migrate, seed } = require('../scripts/database');
 const { parameters } = require('../server/database');
-const credentials = 'Basic ' + Buffer.from('admin:integration-test-only').toString('base64');
 let base;
-async function request(url, method='GET', body, authenticated=true) {
-  const r = await fetch(base+url, { method, headers: { ...(authenticated ? { authorization:credentials } : {}), 'Content-Type':'application/json' }, ...(body ? { body:JSON.stringify(body) } : {}) });
+async function request(url, method='GET', body) {
+  const r = await fetch(base+url, { method, headers: { 'Content-Type':'application/json' }, ...(body ? { body:JSON.stringify(body) } : {}) });
   const text = await r.text();
   return { status:r.status, headers:r.headers, body:r.headers.get('content-type')?.includes('json') ? JSON.parse(text) : text };
 }
@@ -53,13 +52,17 @@ test('WASHY PostgreSQL deployment workflow', async t => {
   await new Promise(resolve => server.once('listening',resolve));
   base = 'http://127.0.0.1:'+server.address().port;
   t.after(async()=>{ await new Promise(resolve=>server.close(resolve)); await db.close(); });
-  await t.test('production fails closed until browser credentials are configured',async()=>{
+  await t.test('production pages and API work without login, including with old login variables',async()=>{
     delete process.env.APP_USERNAME;delete process.env.APP_PASSWORD;
-    assert.equal((await request('/dashboard.html')).status,503);
-    process.env.APP_USERNAME='admin';process.env.APP_PASSWORD='integration-test-only';
-    assert.equal((await request('/api/bootstrap','GET',null,false)).status,401);
-    assert.equal((await request('/dashboard.html','GET',null,false)).status,401);
-    assert.equal((await request('/dashboard.html')).status,200);
+    let response=await request('/dashboard.html');
+    assert.equal(response.status,200);
+    assert.equal(response.headers.get('www-authenticate'),null);
+    assert.equal(response.headers.get('x-content-type-options'),'nosniff');
+    process.env.APP_USERNAME='admin';process.env.APP_PASSWORD='old-unused-test-value';
+    assert.equal((await request('/api/bootstrap')).status,200);
+    response=await request('/dashboard.html');
+    assert.equal(response.status,200);
+    assert.equal(response.headers.get('www-authenticate'),null);
     for(const file of ['/.env','/server/index.js','/package.json','/database/postgres/seed.sql']) assert.equal((await request(file)).status,404);
   });
   await t.test('health and parameterized inputs',async()=>{
